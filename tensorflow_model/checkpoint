@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/tame/Desktop/lab/bottle_mnist/tensorflow_model/linear"
+all_model_checkpoint_paths: "/Users/tame/Desktop/lab/bottle_mnist/tensorflow_model/linear"

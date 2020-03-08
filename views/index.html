@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>手書き数字判定</title>
+  <!-- <meta name="description" content="サイトの説明文"> -->
+  <style>
+    canvas {
+        position: relative;
+        border:3px solid #000;
+    }
+
+  </style>
+</head>
+<body>
+
+  <canvas id="canvassample" width="100" height="100" ></canvas>
+  <br>
+  <form action="/data" method="POST">
+    <input type="submit" value="データ収集"/>
+    <div id="btn-box">
+        <input type="hidden" name="learn_data" id="learn_data">
+    </div>
+    <p>
+    <input type="radio" name="number" value="0">0
+    <input type="radio" name="number" value="1" checked="checked">1
+    <input type="radio" name="number" value="2">2
+    <input type="radio" name="number" value="3">3
+    <input type="radio" name="number" value="4">4
+    <input type="radio" name="number" value="5">5
+    <input type="radio" name="number" value="6">6
+    <input type="radio" name="number" value="7">7
+    <input type="radio" name="number" value="8">8
+    <input type="radio" name="number" value="9">9
+    </p>
+  </form>
+
+  <form action="/predict" method="POST">
+    <input type="submit" value="判定"/>
+    <div id="btn-box">
+        <input type="hidden" name="predict_data" id="predict_data">
+    </div>
+  </form>
+
+<script>
+  var canvas = document.getElementById('canvassample'),
+      ctx = canvas.getContext('2d'),
+      moveflg = 0,
+      Xpoint,
+      Ypoint;
+
+  //初期値（サイズ、色、アルファ値）の決定
+  var defSize = 7,
+      defColor = "#555";
+
+
+  // PC対応
+  canvas.addEventListener('mousedown', startPoint, false);
+  canvas.addEventListener('mousemove', movePoint, false);
+  canvas.addEventListener('mouseup', endPoint, false);
+
+  // スマホ対応
+  canvas.addEventListener('touchstart', startPoint, false);
+  canvas.addEventListener('touchmove', movePoint, false);
+  canvas.addEventListener('touchend', endPoint, false);
+
+  function startPoint(e){
+    e.preventDefault();
+    ctx.beginPath();
+
+    // 矢印の先から始まるように調整
+    Xpoint = e.layerX;
+    Ypoint = e.layerY;
+
+    ctx.moveTo(Xpoint, Ypoint);
+  }
+
+  function movePoint(e){
+    if(e.buttons === 1 || e.witch === 1 || e.type == 'touchmove')
+    {
+      Xpoint = e.layerX;
+    　Ypoint = e.layerY;
+      moveflg = 1;
+
+      ctx.lineTo(Xpoint, Ypoint);
+      ctx.lineCap = "round";
+      ctx.lineWidth = defSize * 2;
+      ctx.strokeStyle = defColor;
+      ctx.stroke();
+    }
+  }
+
+  function endPoint(e)
+  {
+      if(moveflg === 0)
+      {
+         ctx.lineTo(Xpoint-1, Ypoint-1);
+         ctx.lineCap = "round";
+         ctx.lineWidth = defSize * 2;
+         ctx.strokeStyle = defColor;
+         ctx.stroke();
+      }
+      moveflg = 0;
+      chgImg()
+  }
+
+  function chgImg()
+  {
+    var png = canvas.toDataURL();
+    // document.getElementById("newImg").src = png;
+    // 送信用に画像データを格納
+    document.getElementById("predict_data").value = png;
+    document.getElementById("learn_data").value = png;
+  }
+</script>
+</body>

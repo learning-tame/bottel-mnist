@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>判定結果</title>
+  <script>
+  window.onload = function(){
+  }
+  </script>
+  <style>
+  .graph {
+      position: relative; /* IE is dumb */
+      width: 300px;
+      /* border: 1px solid #207870; */
+      padding: 2px;
+  }
+  .graph .bar {
+      display: block;
+      position: relative;
+      background: #409890;
+      text-align: center;
+      color: #f0ffff;
+      height: 1em;
+      line-height: 1em;
+  }
+  .graph .bar span { position: absolute; left: 1em; }
+  </style>
+
+</head>
+<body>
+<p>手書きした数字</p>
+<p>{{answer}}</p>
+<table border="1">
+  <tr>
+    <th>数</th>
+    <th>確信度</th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>{{zero}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{zero}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>{{one}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{one}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>{{two}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{two}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>{{three}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{three}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>{{four}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{four}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>{{five}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{five}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>{{six}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{six}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>{{seven}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{seven}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>{{eight}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{eight}}%;"></span>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>{{nine}}</td>
+    <td>
+    <div class="graph">
+      <span class="bar" style="width: {{nine}}%;"></span>
+    </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
